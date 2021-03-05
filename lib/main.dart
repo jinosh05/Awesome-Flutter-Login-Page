@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           // ignore: missing_return
                           validator: (value) {
-                            if (value == null) {
+                            if (value.isEmpty) {
                               return "Please Enter your Username";
                             } else if (value.length >= 10) {
                               return "Name too Long";
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           // ignore: missing_return
                           validator: (value) {
-                            if (value == null) {
+                            if (value.isEmpty) {
                               return "Please Enter your Password";
                             } else if (value.length >= 10) {
                               return "Password too Long";
