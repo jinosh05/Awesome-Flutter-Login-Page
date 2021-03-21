@@ -13,11 +13,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   bool checkboxvalue = true;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: _key,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -65,7 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Container(
                                 height: 45,
-                                margin: EdgeInsets.only(bottom: 30,),
+                                margin: EdgeInsets.only(
+                                  bottom: 30,
+                                ),
                                 padding: EdgeInsets.symmetric(horizontal: 25),
                                 child: TextFormField(
                                   validator: (value) {
@@ -88,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       size: 25,
                                       color: Colors.white,
                                     ),
-                                    hintText: "Enter E-mail",
+                                    hintText: "Enter Username",
                                     hintStyle: TextStyle(
                                         color: Colors.white, fontSize: 20),
                                     enabledBorder: OutlineInputBorder(
@@ -175,6 +179,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (formkey.currentState.validate()) {
                                   print("Validated");
                                 }
+                                _key.currentState.showSnackBar(SnackBar(
+                                  content: Text(
+                                    'Login In Successful',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.yellow,
+                                        fontSize: 24),
+                                  ),
+                                  duration: Duration(seconds: 2),
+                                  action: SnackBarAction(
+                                    label: 'Okay',
+                                    onPressed: () {},
+                                  ),
+                                ));
                               },
                               child: Text(
                                 "Login",
