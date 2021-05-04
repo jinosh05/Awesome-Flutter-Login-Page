@@ -13,8 +13,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-  bool checkboxvalue = true;
+  final GlobalKey<ScaffoldMessengerState> _key =
+      GlobalKey<ScaffoldMessengerState>();
+
+  bool? checkboxvalue = true;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -26,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.blue[200],
+                  color: Colors.blue[200]!,
                   width: 4,
                 ),
                 image: DecorationImage(
@@ -73,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 25),
                                 child: TextFormField(
                                   validator: (value) {
-                                    if (value.isEmpty) {
+                                    if (value!.isEmpty) {
                                       return "Please Enter your Username";
                                     } else if (value.length >= 10) {
                                       return "Name too Long";
@@ -108,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 25),
                                 child: TextFormField(
                                   validator: (value) {
-                                    if (value.isEmpty) {
+                                    if (value!.isEmpty) {
                                       return "Please Enter your Password";
                                     } else if (value.length >= 10) {
                                       return "Password too Long";
@@ -121,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
-                                  obscureText: !checkboxvalue,
+                                  obscureText: !checkboxvalue!,
                                   decoration: InputDecoration(
                                     icon: Icon(
                                       Icons.lock,
@@ -174,12 +176,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Container(
                             width: 200,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
-                                if (formkey.currentState.validate()) {
+                                if (formkey.currentState!.validate()) {
                                   print("Validated");
                                 }
-                                _key.currentState.showSnackBar(SnackBar(
+                                _key.currentState!.showSnackBar(SnackBar(
                                   content: Text(
                                     'Login In Successful',
                                     style: TextStyle(
@@ -196,23 +198,55 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: Text(
                                 "Login",
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25)),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)),
+                              ),
                             ),
+
+                            //  RaisedButton(
+                            //   onPressed: () {
+                            //     if (formkey.currentState!.validate()) {
+                            //       print("Validated");
+                            //     }
+                            //     _key.currentState!.showSnackBar(SnackBar(
+                            //       content: Text(
+                            //         'Login In Successful',
+                            //         style: TextStyle(
+                            //             fontWeight: FontWeight.bold,
+                            //             color: Colors.yellow,
+                            //             fontSize: 24),
+                            //       ),
+                            //       duration: Duration(seconds: 2),
+                            //       action: SnackBarAction(
+                            //         label: 'Okay',
+                            //         onPressed: () {},
+                            //       ),
+                            //     ));
+                            //   },
+                            //   child: Text(
+                            //     "Login",
+                            //     style: TextStyle(fontSize: 18),
+                            //   ),
+                            //   color: Colors.blue,
+                            //   textColor: Colors.white,
+                            //   shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(25)),
+                            // ),
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          RaisedButton(
-                            elevation: 0,
+                          ElevatedButton(
                             onPressed: () {},
-                            color: Colors.transparent,
                             child: Text(
                               "Forgot Password?",
                               style: TextStyle(
@@ -220,7 +254,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                            ),
                           ),
+                          // RaisedButton(
+                          //   elevation: 0,
+                          //   onPressed: () {},
+                          //   color: Colors.transparent,
+                          //   child: Text(
+                          //     "Forgot Password?",
+                          //     style: TextStyle(
+                          //         color: Colors.blue,
+                          //         fontSize: 16,
+                          //         fontWeight: FontWeight.bold),
+                          //   ),
+                          // ),
                           Text("Don't have an account?",
                               style: TextStyle(
                                 color: Colors.white,
@@ -234,17 +286,34 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Container(
                             width: 200,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {},
                               child: Text(
                                 "Register Now",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
                               ),
-                              color: Colors.pink,
-                              textColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25)),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.pink,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)),
+                              ),
                             ),
+
+                            //  RaisedButton(
+                            //   onPressed: () {},
+                            //   child: Text(
+                            //     "Register Now",
+                            //     style: TextStyle(fontSize: 16),
+                            //   ),
+                            //   color: Colors.pink,
+                            //   textColor: Colors.white,
+                            //   shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(25)),
+                            // ),
                           ),
                         ],
                       ),
