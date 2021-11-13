@@ -227,9 +227,11 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value) {
           if (value!.isEmpty) {
             return "Please Enter your Password";
-          } else if (value.length >= 10) {
-            return "Password too Long";
-          } else if (value.length <= 5) {
+          }
+          // else if (value.length >= 10) {
+          //   return "Password too Long";
+          // }
+          else if (value.length <= 5) {
             return "Password too short";
           }
           return null;
