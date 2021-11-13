@@ -274,9 +274,11 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value) {
           if (value!.isEmpty) {
             return "Please Enter your Username";
-          } else if (value.length >= 10) {
-            return "Name too Long";
-          } else if (value.length <= 5) {
+          }
+          // else if (value.length >= 10) {
+          //   return "Name too Long";
+          // }
+          else if (value.length <= 5) {
             return "Name too short";
           }
           return null;
